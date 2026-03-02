@@ -18,17 +18,17 @@ def query_ollama(prompt: str) -> str:
         response.raise_for_status()
         return response.json().get("response", "").strip()
     except requests.exceptions.ConnectionError:
-        print("\n❌ Error: Could not connect to Ollama.")
+        print("\n Error: Could not connect to Ollama.")
         print("Make sure Ollama is running: run 'ollama serve' in a separate terminal.")
         sys.exit(1)
     except requests.exceptions.Timeout:
-        print("\n❌ Error: Request timed out. The model may be loading, try again.")
+        print("\n Error: Request timed out. The model may be loading, try again.")
         sys.exit(1)
 
 
 def get_code_input() -> str:
     """Prompt the user to paste code, ended by a sentinel line."""
-    print("\n📋 Paste your Python code below.")
+    print("\n Paste your Python code below.")
     print("When you're done, type 'END' on a new line and press Enter:\n")
     lines = []
     while True:
@@ -71,35 +71,34 @@ Code:
 
 
 def print_section(title: str, content: str):
-    width = 60
-    print("\n" + "=" * width)
+    print("\n" + "=" * 60)
     print(f"  {title}")
-    print("=" * width)
+    print("=" * 60)
     print(content)
 
 
 def main():
     print("=" * 60)
-    print("  🔍 Python Code Explainer — Powered by Ollama (llama3)")
+    print("  Python Code Explainer — Powered by Ollama (llama3)")
     print("=" * 60)
 
     code = get_code_input()
 
     if not code.strip():
-        print("❌ No code entered. Exiting.")
+        print("No code entered. Exiting.")
         sys.exit(1)
 
     print("\n⏳ Analyzing your code with llama3... (this may take a moment)\n")
 
     explanation = explain_code(code)
-    print_section("📖 Plain English Explanation", explanation)
+    print_section("Plain English Explanation", explanation)
 
     print("\n⏳ Adding inline comments...\n")
     commented = comment_code(code)
-    print_section("💬 Code With Inline Comments", commented)
+    print_section("Code With Inline Comments", commented)
 
     print("\n" + "=" * 60)
-    print("  ✅ Done!")
+    print("  Done!")
     print("=" * 60 + "\n")
 
 
