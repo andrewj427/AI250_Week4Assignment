@@ -1,0 +1,72 @@
+Cloud AI vs Local AI (Ollama) — Tradeoffs
+==========================================
+
+For this project, I used Ollama to run llama3 locally instead of a cloud-based
+API like OpenAI or Anthropic. Both approaches have meaningful tradeoffs depending
+on the use case.
+
+
+CLOUD AI (e.g. OpenAI, Anthropic, Google Gemini)
+-------------------------------------------------
+
+Advantages:
+- No setup required — just an API key and a few lines of code
+- Access to the most powerful models available (GPT-4, Claude 3, Gemini Ultra)
+- No hardware requirements — runs on any machine regardless of specs
+- Always up to date — models are maintained and improved by the provider
+- Fast response times due to dedicated, optimized infrastructure
+
+Disadvantages:
+- Costs money — API usage is billed per token (can add up quickly)
+- Requires an internet connection at all times
+- Data is sent to a third-party server — raises privacy concerns for sensitive code
+- Subject to rate limits and potential downtime
+- Less control over the model's behavior and versioning
+
+
+LOCAL AI (Ollama)
+-----------------
+
+Advantages:
+- Completely free after initial setup — no per-request costs
+- Works fully offline — no internet connection needed after model download
+- Private by default — your code never leaves your machine
+- No rate limits — run as many requests as you want
+- Full control over the model version and configuration
+
+Disadvantages:
+- Requires a capable machine — large models need significant RAM (8–16GB+)
+- Slower than cloud APIs on average consumer hardware
+- Models are smaller and generally less capable than frontier cloud models
+- Setup is more involved (install Ollama, pull model, manage local server)
+- No automatic updates — you must manually pull newer model versions
+
+
+WHICH IS BETTER FOR THIS PROJECT?
+----------------------------------
+
+For a code explainer tool, local AI (Ollama) is a strong fit because:
+
+1. Privacy: Developers often work with proprietary or sensitive code. Keeping
+   that code off third-party servers is a significant advantage.
+
+2. Cost: A tool used frequently throughout a workday would accumulate real API
+   costs in a cloud model. Locally, it's free every time.
+
+3. Quality tradeoff is acceptable: For explaining short Python functions,
+   llama3 performs well enough. The quality gap vs. GPT-4 is noticeable on
+   complex tasks, but acceptable for typical student or personal use.
+
+For production tools used by large teams, a cloud API would likely be the better
+choice due to superior model quality, reliability, and no hardware dependency.
+
+
+CONCLUSION
+----------
+
+Cloud AI wins on raw power, ease of use, and reliability.
+Local AI (Ollama) wins on cost, privacy, and independence.
+
+The right choice depends on the sensitivity of the data, the frequency of use,
+and the hardware available. For personal developer tools, local AI is often the
+smarter default.
